@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WEL3A_STORE - شحن الألعاب</title>
+<style>
+:root {
+  --primary-color: #d4af37;  /* ذهبي */
+  --card-bg: #111;
+  --item-bg: #1a1a1a;
+  --text-muted: #c9c9c9;
+  --border-color: #333;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin:0; padding:0;
+  background: linear-gradient(270deg, #000000, #111111, #000000, #111111);
+  background-size: 800% 800%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+header {
+  background: #000;
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-name { 
+  font-size:28px; font-weight:bold; color: var(--primary-color);
+  text-shadow: 0 0 5px #fff, 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
+}
+
+.lead { font-size:14px; color: var(--text-muted); margin-top:3px; }
+
+main { display:flex; padding:20px; gap:20px; }
+.catalog { flex:2; display:grid; gap:20px; }
+
+.game {
+  background: var(--card-bg);
+  padding:20px;
+  border-radius:12px;
+  border:1px solid var(--primary-color);
+  box-shadow: 0 0 12px rgba(212,175,55,0.3);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  position: relative;
+  overflow: hidden;
+}
+
+.game:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 0 25px rgba(212,175,55,0.6); 
+}
+
+.game h2 {
+  color: var(--primary-color);
+  text-shadow: 0 0 5px #fff, 0 0 15px var(--primary-color), 0 0 25px var(--primary-color);
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #d4af37, 0 0 20px #d4af37; }
+  50% { text-shadow: 0 0 10px #fff, 0 0 20px #d4af37, 0 0 40px #d4af37; }
+  100% { text-shadow: 0 0 5px #fff, 0 0 15px #d4af37, 0 0 30px #d4af37; }
+}
+
+.items .item {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:8px 0; border-bottom:1px solid var(--border-color);
+  border-radius:6px; margin-bottom:5px;
+  background: var(--item-bg); transition: background 0.3s;
+}
+.items .item:hover { background:#222; }
+
+/* ألوان أزرار حسب اللعبة */
+.add, button.btn {
+  font-weight:bold;
+  border:none; border-radius:6px;
+  padding:8px 15px; cursor:pointer;
+  transition: all var(--transition-speed);
+  text-shadow: 0 0 2px #fff;
+}
+
+/* ألوان خاصة بالألعاب */
+.add.pubg { background: #ff4500; box-shadow:0 0 8px #ff4500,0 0 15px #ff4500; }
+.add.freefire { background:#1e90ff; box-shadow:0 0 8px #1e90ff,0 0 15px #1e90ff; }
+.add.roblox { background:#32cd32; box-shadow:0 0 8px #32cd32,0 0 15px #32cd32; }
+
+.add.pubg:hover { background:#ff6347; transform:scale(1.1); box-shadow:0 0 12px #ff6347,0 0 25px #ff6347; }
+.add.freefire:hover { background:#00bfff; transform:scale(1.1); box-shadow:0 0 12px #00bfff,0 0 25px #00bfff; }
+.add.roblox:hover { background:#7cfc00; transform:scale(1.1); box-shadow:0 0 12px #7cfc00,0 0 25px #7cfc00; }
+
+/* زر الإتمام مع توهج ذهبي pulsate */
+button#checkout, #confirmPayment {
+  background: var(--primary-color);
+  color:#000;
+  font-weight:bold;
+  text-shadow: 0 0 2px #fff;
+  animation: goldPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 5px #fff, 0 0 10px #d4af37, 0 0 15px #d4af37; }
+  50% { box-shadow: 0 0 10px #fff, 0 0 20px #d4af37, 0 0 35px #d4af37; }
+  100% { box-shadow: 0 0 5px #fff, 0 0 12px #d4af37, 0 0 25px #d4af37; }
+}
+
+aside.right { flex:1; display:flex; flex-direction:column; gap:20px; }
+
+.card {
+  background: var(--card-bg);
+  border-radius:12px;
+  padding:20px;
+  border:1px solid var(--primary-color);
+  box-shadow: 0 0 12px rgba(212,175,55,0.25);
+}
+
+input, select {
+  width:100%; padding:10px; margin:5px 0 15px;
+  border-radius:8px; background:#0d0d0d;
+  border:1px solid var(--primary-color); color:#fff; font-size:14px;
+}
+
+.cart-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border-color); }
+.muted { color: var(--text-muted); }
+
+#paymentScreen { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:1000; overflow:auto; padding:30px; }
+#paymentScreen h2 { color: var(--primary-color); text-shadow: 0 0 5px #fff, 0 0 10px #d4af37, 0 0 20px #d4af37; }
+#paymentScreen button.add { background:#444; color:#fff; }
+#paymentScreen button.add:hover { background:#666; transform:scale(1.05); }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="store-name">WEL3A_STORE</div>
+    <p class="lead">اختر الباقة — أدخل بياناتك — استلم الشحن</p>
+  </div>
+  <div class="muted">العملة: جنيه مصري (L.E)</div>
+</header>
+
+<main>
+  <section class="catalog card">
+    <div class="game">
+      <h2>💵 PUBG Mobile</h2>
+      <div class="items" data-game="PUBG MOBILE"></div>
+    </div>
+    <div class="game">
+      <h2>💎 Free Fire</h2>
+      <div class="items" data-game="FREE FIRE"></div>
+    </div>
+    <div class="game">
+      <h2>⏣ Roblox</h2>
+      <div class="items" data-game="ROBLOX"></div>
+    </div>
+  </section>
+
+  <aside class="right">
+    <div class="card">
+      <h3>سلة الشراء</h3>
+      <div class="cart-list" id="cartList">
+        <div class="muted">لا توجد عناصر بعد</div>
+      </div>
+      <div class="total">
+        <div>الإجمالي</div>
+        <div id="total">0 L.E</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>بيانات الشحن</h3>
+      <label for="playerName">اسم اللاعب</label>
+      <input id="playerName" placeholder="مثال: player123" />
+
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" type="email" placeholder="مثال: you@example.com" />
+
+      <label for="password">كلمة المرور</label>
+      <input id="password" type="text" placeholder="ادخل كلمة المرور" />
+
+      <label for="phone">رقم الهاتف</label>
+      <input id="phone" placeholder="مثال: 01xxxxxxxx" />
+
+      <label>طريقة الدفع</label>
+      <select id="payment">
+        <option value="vodafone">فودافون كاش</option>
+        <option value="etisalat">اتصالات كاش</option>
+        <option value="bank">تحويل بنكي</option>
+        <option value="bybit">بايبت</option>
+        <option value="instapay">انستا باي</option>
+      </select>
+
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="btn" id="checkout">إتمام الطلب</button>
+        <button class="add" id="clearCart">مسح السلة</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div id="paymentScreen">
+  <h2>طرق الدفع</h2>
+  <ul>
+    <li>فودافون كاش: 01092032356</li>
+    <li>إنستا باي: 01270771905</li>
+    <li>اتصالات كاش: 01125494828</li>
+    <li>بايبت: 441823672</li>
+  </ul>
+  <label>ارفع صورة السداد:</label>
+  <input type="file" id="paymentScreenshot" accept="image/*" />
+  <div style="margin-top:20px; display:flex; gap:10px;">
+    <button id="confirmPayment" class="btn">تم الدفع، إرسال الطلب</button>
+    <button id="cancelPayment" class="add">إلغاء</button>
+  </div>
+</div>
+
+<script>
+const catalog = [
+  {game:'PUBG MOBILE', title:'60 UC', price:55},
+  {game:'PUBG MOBILE', title:'120 UC', price:110},
+  {game:'PUBG MOBILE', title:'325 UC', price:235},
+  {game:'PUBG MOBILE', title:'385 UC', price:290},
+  {game:'PUBG MOBILE', title:'660 UC', price:465},
+  {game:'PUBG MOBILE', title:'985 UC', price:695},
+  {game:'PUBG MOBILE', title:'1320 UC', price:920},
+  {game:'PUBG MOBILE', title:'1800 UC', price:1200},
+  {game:'PUBG MOBILE', title:'3850 UC', price:2250},
+
+  {game:'FREE FIRE', title:'عضوية شهرية', price:350},
+  {game:'FREE FIRE', title:'عضوية أسبوعية', price:75},
+  {game:'FREE FIRE', title:'دروب 1 دولار', price:50},
+  {game:'FREE FIRE', title:'دروب 2 دولار', price:85},
+  {game:'FREE FIRE', title:'عضوية مخففة', price:35},
+
+  {game:'ROBLOX', title:'40 روبوكس', price:35},
+  {game:'ROBLOX', title:'80 روبوكس', price:60},
+  {game:'ROBLOX', title:'400 روبوكس', price:255},
+  {game:'ROBLOX', title:'800 روبوكس', price:490},
+  {game:'ROBLOX', title:'1700 روبوكس', price:995}
+];
+
+const groups={};
+catalog.forEach(it=>{ groups[it.game]=groups[it.game]||[]; groups[it.game].push(it); });
+document.querySelectorAll('.items').forEach(container=>{
+  const game=container.dataset.game;
+  const items=groups[game]||[];
+  container.innerHTML=items.map(it=>`<div class="item"><div><strong>${it.title}</strong><div class="muted">${it.price} L.E</div></div><button class="add ${it.cls}" onclick="addToCart(${catalog.indexOf(it)})">+</button></div>`).join('');
+});
+
+let cart=[]; const cartList=document.getElementById('cartList'); const totalEl=document.getElementById('total');
+function addToCart(i){ const found=cart.find(c=>c.idx===i); if(found) found.qty++; else cart.push({idx:i,qty:1}); renderCart();}
+function renderCart(){ if(cart.length===0){ cartList.innerHTML='<div class="muted">لا توجد عناصر بعد</div>'; totalEl.textContent='0 L.E'; return;}
+cartList.innerHTML=cart.map(c=>{ const item=catalog[c.idx]; return `<div class="cart-item"><div><strong>${item.title}</strong><div class="muted" style="font-size:12px">${item.game}</div></div><div>${item.price*c.qty} L.E</div></div>`}).join('');
+const total=cart.reduce((s,c)=>s+catalog[c.idx].price*c.qty,0); totalEl.textContent=total+' L.E';}
+document.getElementById('clearCart').onclick=()=>{ cart=[]; renderCart(); }
+
+document.getElementById('checkout').onclick=()=>{
+  if(cart.length===0){ alert('السلة فارغة'); return;}
+  const name=document.getElementById('playerName').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value;
+  const phone=document.getElementById('phone').value.trim();
+  const payment=document.getElementById('payment').value;
+  if(!name||!email||!password||!phone){ alert('املأ جميع الحقول'); return; }
+  const emailRegex=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if(!emailRegex.test(email)){ alert('الرجاء إدخال بريد إلكتروني صحيح'); return; }
+  window.orderData={name,email,password,phone,payment,cart:[...cart]};
+  document.getElementById('paymentScreen').style.display='block';
+};
+
+document.getElementById('confirmPayment').onclick=()=>{
+  const screenshot=document.getElementById('paymentScreenshot').files[0];
+  if(!screenshot){ alert('من فضلك ارفع صورة الدفع قبل المتابعة'); return; }
+  const data=window.orderData;
+  let orderText=`طلب شحن ⚡\n`;
+  orderText+=`الاسم: ${data.name}\nالبريد الإلكتروني: ${data.email}\nكلمة المرور: ${data.password}\nالهاتف: ${data.phone}\nطريقة الدفع: ${data.payment}\n---\nالمنتجات:\n`;
+  data.cart.forEach(c=>{ const it=catalog[c.idx]; orderText+=`${it.game} | ${it.title} x${c.qty} = ${it.price*c.qty} L.E\n`; });
+  const total=data.cart.reduce((s,c)=>s+catalog[c.idx].price*c.qty,0);
+  orderText+=`الإجمالي: ${total} L.E`;
+  const waText=encodeURIComponent(orderText);
+  const waNumber='201125494828';
+  const waURL=`https://wa.me/${waNumber}?text=${waText}`;
+  window.open(waURL,'_blank');
+  document.getElementById('paymentScreen').style.display='none';
+  cart=[]; renderCart();
+  document.getElementById('playerName').value='';
+  document.getElementById('email').value='';
+  document.getElementById('password').value='';
+  document.getElementById('phone').value='';
+  document.getElementById('paymentScreenshot').value='';
+};
+
+document.getElementById('cancelPayment').onclick=()=>{ document.getElementById('paymentScreen').style.display='none'; };
+</script>
+</body>
+</html>
